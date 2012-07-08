@@ -932,6 +932,7 @@ sh4eb-softmmu \
 sparc-softmmu \
 sparc64-softmmu \
 s390x-softmmu \
+vax-softmmu \
 xtensa-softmmu \
 xtensaeb-softmmu \
 "
@@ -3677,6 +3678,9 @@ case "$target_arch2" in
     target_long_alignment=8
   ;;
   unicore32)
+    target_phys_bits=32
+  ;;
+  vax)
     target_phys_bits=32
   ;;
   xtensa|xtensaeb)

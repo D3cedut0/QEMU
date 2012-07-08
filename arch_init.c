@@ -79,6 +79,8 @@ int graphic_depth = 15;
 #define QEMU_ARCH QEMU_ARCH_SH4
 #elif defined(TARGET_SPARC)
 #define QEMU_ARCH QEMU_ARCH_SPARC
+#elif defined(TARGET_VAX)
+#define QEMU_ARCH QEMU_ARCH_VAX
 #elif defined(TARGET_XTENSA)
 #define QEMU_ARCH QEMU_ARCH_XTENSA
 #endif

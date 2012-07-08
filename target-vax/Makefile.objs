@@ -1,0 +1,4 @@
+obj-y += cpu.o
+obj-y += helper.o
+obj-y += op_helper.o
+obj-y += translate.o

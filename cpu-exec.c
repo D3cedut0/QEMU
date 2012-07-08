@@ -228,6 +228,7 @@ int cpu_exec(CPUArchState *env)
 #elif defined(TARGET_SH4)
 #elif defined(TARGET_CRIS)
 #elif defined(TARGET_S390X)
+#elif defined(TARGET_VAX)
 #elif defined(TARGET_XTENSA)
     /* XXXXX */
 #else
@@ -503,6 +504,8 @@ int cpu_exec(CPUArchState *env)
                         do_interrupt(env);
                         next_tb = 0;
                     }
+#elif defined(TARGET_VAX)
+                    assert(0);
 #elif defined(TARGET_XTENSA)
                     if (interrupt_request & CPU_INTERRUPT_HARD) {
                         env->exception_index = EXC_IRQ;
@@ -638,6 +641,7 @@ int cpu_exec(CPUArchState *env)
 #elif defined(TARGET_ALPHA)
 #elif defined(TARGET_CRIS)
 #elif defined(TARGET_S390X)
+#elif defined(TARGET_VAX)
 #elif defined(TARGET_XTENSA)
     /* XXXXX */
 #else
