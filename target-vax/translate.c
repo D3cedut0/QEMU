@@ -650,6 +650,11 @@ static inline TCGv disas_vax_operand(DisasContext *ctx, int opsize)
 
 #define EMIT_DEC(type)						\
 	do {							\
+		TCGv dif;					\
+		dif = disas_vax_operand(ctx, type);		\
+		tcg_gen_subi_tl(dif, dif, 1);			\
+		UPDATE_CC(CC_OP_SUB);				\
+		EMIT_INTEGER_OVERFLOW();			\
 	} while (0)						\
 
 #define EMIT_DIV(quo, divd, divr)				\
@@ -687,6 +692,11 @@ static inline TCGv disas_vax_operand(DisasContext *ctx, int opsize)
 
 #define EMIT_INC(type)						\
 	do {							\
+		TCGv sum;					\
+		sum = disas_vax_operand(ctx, type);		\
+		tcg_gen_addi_tl(sum, sum, 1);			\
+		UPDATE_CC(CC_OP_ADD);				\
+		EMIT_INTEGER_OVERFLOW();			\
 	} while (0)						\
 
 #define EMIT_MCOM(type)						\
