@@ -40,7 +40,7 @@ vaxstation_4000_90_init(ram_addr_t ram_size,
 	MemoryRegion *ram;
 
 	ram = g_malloc(sizeof(*ram));
-	memory_region_init(ram, "vax.ram", ram_size);
+	memory_region_init_ram(ram, "vax.ram", ram_size);
 	memory_region_add_subregion(get_system_memory(), 0, ram);
 
 	if (kernel_filename) {
