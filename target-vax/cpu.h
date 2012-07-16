@@ -34,7 +34,7 @@
 
 #define TARGET_HAS_ICE 1
 
-#define ELF_MACHINE EM_NONE
+#define ELF_MACHINE EM_VAX
 
 #define TARGET_PAGE_BITS 9
 

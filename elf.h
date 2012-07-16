@@ -98,6 +98,8 @@ typedef int64_t  Elf64_Sxword;
 
 #define EM_S390		22	/* IBM S/390 */
 
+#define EM_VAX		75	/* Digital Equipment Corp VAX */
+
 #define EM_CRIS         76      /* Axis Communications 32-bit embedded processor */
 
 #define EM_V850		87	/* NEC v850 */
