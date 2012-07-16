@@ -11,5 +11,5 @@ void do_interrupt(CPUVAXState *env)
 
 target_phys_addr_t cpu_get_phys_page_debug(CPUVAXState *env, target_ulong addr)
 {
-	assert(0);
+	return addr;
 }

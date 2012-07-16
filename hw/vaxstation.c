@@ -17,17 +17,44 @@
  * License along with this library; if not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "exec-memory.h"
 #include "hw/boards.h"
 #include "hw/qdev.h"
+#include "loader.h"
+#include "memory.h"
+#include "elf.h"
+
+static uint64_t translate_kernel_address(void *env, uint64_t addr)
+{
+	return cpu_get_phys_page_debug(env, addr);
+}
 
 static void
-vaxstation_4000_90_init(ram_addr_t RAM_size,
+vaxstation_4000_90_init(ram_addr_t ram_size,
 			const char *boot_device,
 			const char *kernel_filename,
 			const char *kernel_cmdline,
 			const char *initrd_filename,
 			const char *cpu_model)
 {
+	MemoryRegion *ram;
+
+	ram = g_malloc(sizeof(*ram));
+	memory_region_init(ram, "vax.ram", ram_size);
+	memory_region_add_subregion(get_system_memory(), 0, ram);
+
+	if (kernel_filename) {
+		long kernel_size;
+
+        	kernel_size = load_elf(kernel_filename, translate_kernel_address, NULL,
+				       NULL, NULL, NULL, 0, ELF_MACHINE, 0);
+
+		if (kernel_size < 0) {
+			fprintf(stderr, "qemu: could not load kernel '%s'\n",
+				kernel_filename);
+			exit(1);
+		}
+	}
 }
 
 static QEMUMachine vaxstation_4000_90_machine = {
